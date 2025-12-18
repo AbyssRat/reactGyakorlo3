@@ -24,9 +24,20 @@ function App() {
     }
   }
 
-  const postData = async (newEntry) => {
+  const postData = async () => {
+    const newEntry = {
+      Toke: 100000,
+      Aktiv: true,
+      Szekhely: 'Budapest',
+      Megnevezes: 'Uj ceg'
+    };
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
     try {
-      const response = await axios.post(url, newEntry);
+      const response = await axios.post(url, newEntry, config);
       console.log('Data posted:', response.data);
       getData(); // Frissítjük az adatokat a POST után
     } catch (error) {
@@ -34,7 +45,18 @@ function App() {
     }
   }
 
-  const putData = async (id, updatedEntry) => {
+  const putData = async (id) => {
+    const updatedEntry = {
+      Toke: 200000,
+      Aktiv: false,
+      Szekhely: 'Debrecen',
+      Megnevezes: 'Frissitett ceg'
+    };
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
     try {
       const response = await axios.put(`${url}/${id}`, updatedEntry);
       console.log('Data updated:', response.data);
